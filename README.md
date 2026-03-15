@@ -14,6 +14,19 @@ This project uses an LLM agent (Claude) to drive a research/programming workflow
 | `example_slurm.sh` | Reference SLURM job template |
 | `thang_note.md` | Human-written Vietnamese notes for review & QA |
 
+## Quick start
+
+1. **Describe your goal** in `spec.md` — chat with an LLM to flesh out the main ideas first.
+2. **Define implementation steps** in `spec.md` using checkbox-style tasks (`- [ ] ...`).
+3. **Run Ralph:**
+   ```bash
+   bash ralph.sh
+   ```
+
+That's it. Ralph will:
+- Retry automatically if you hit a rate limit (waits 3 hours then resumes).
+- Run a reflection pass every N loops to combat context rot. Change the frequency by editing `REFLECT_EVERY` in `ralph.sh` (default: every 2 loops).
+
 ## How it works
 
 1. The agent reads `spec.md` and any implementation plan.
