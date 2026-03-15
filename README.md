@@ -42,3 +42,6 @@ Ralph is **headless** — it runs autonomously without a UI. If you want an inte
 Because the code is largely LLM-generated it can be hard to audit at a glance.
 `thang_note.md` exists as a dedicated human-readable log (in Vietnamese) where the human operator tracks progress and runs QA checks against the generated code.
 See that file for the current review status.
+
+## License
+MIT
