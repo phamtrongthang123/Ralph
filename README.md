@@ -43,5 +43,31 @@ Because the code is largely LLM-generated it can be hard to audit at a glance.
 `thang_note.md` exists as a dedicated human-readable log (in Vietnamese) where the human operator tracks progress and runs QA checks against the generated code.
 See that file for the current review status.
 
+## FAQ
+
+**Q: When do I need to use this Ralph loop?**
+
+A: When you are absolutely sure you don't care about the code generated — as long as it works, you are happy, and no one will ever complain why the code is so over-engineered. Very useful when you have a repo you want to try but don't have time to set up the environment or run a few inference scripts, or even training. Run Ralph until it's done and you can come back to a working codebase whenever you want.
+
+**Q: What if I don't have time but I need good working code?**
+
+A: You either accept the fact that the code will not be perfect, or hire an actual developer who can actually write good code.
+
+**Q: Will Ralph write production-quality code?**
+
+A: No. Expect working code, not clean code. It may be verbose, inconsistently structured, or over-engineered. That is the tradeoff.
+
+**Q: Can I run Ralph interactively to review each step?**
+
+A: No — Ralph is fully headless and autonomous. If you want to review each decision, hire a developer or use an interactive agent instead.
+
+**Q: What happens if something goes wrong mid-run?**
+
+A: Ralph retries on rate limits automatically. For other failures, check the commit history and `reflect.md`. You can also interrupt with `Ctrl+C`, manually edit `spec.md` or `implementation_plan.md` to correct the course, then re-run `bash ralph.sh` to resume.
+
+**Q: Can I see the current thought process?**
+
+A: Yes — run `claude --resume`, which shows the history of all Claude sessions including the currently running `claude -p`. Pick the newest one with Ctrl-V and that is the current process.
+
 ## License
 MIT
