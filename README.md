@@ -20,6 +20,10 @@ This project uses an LLM agent (Claude) to drive a research/programming workflow
 2. It picks the highest-leverage task, runs it on a GPU node via `sbatch`, and iterates until the code runs end-to-end.
 3. Every meaningful change is committed before moving to the next task.
 
+## Headless vs interactive
+
+Ralph is **headless** — it runs autonomously without a UI. If you want an interactive version, consider [karpathy/autoresearch](https://github.com/karpathy/autoresearch).
+
 ## Human oversight
 
 Because the code is largely LLM-generated it can be hard to audit at a glance.
