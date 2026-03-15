@@ -17,8 +17,8 @@ echo "Running on node: $(hostname)"
 echo "Job ID: $SLURM_JOB_ID"
 
 PROJECT_ROOT=$(pwd)
-CONDA_ENV_NAME="robodiff"
-CONTAINER="$HOME/qwenvl-2.5-cu121.sif"
+CONDA_ENV_NAME="<your-conda-env>"
+CONTAINER="$HOME/<your-container>.sif"
 
 mkdir -p slurm_logs
 
@@ -26,7 +26,7 @@ apptainer exec --nv --writable-tmpfs \
     --bind "$HOME:$HOME" \
     --bind /share/apps:/share/apps \
     "${CONTAINER}" bash -c "
-source /share/apps/python/anaconda-3.14/etc/profile.d/conda.sh
+source /share/apps/<path-to-conda>/etc/profile.d/conda.sh
 cd ${PROJECT_ROOT}
 
 conda activate \"${CONDA_ENV_NAME}\"
