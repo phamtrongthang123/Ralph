@@ -20,7 +20,7 @@ while true; do
         cat reflect.md | claude --model opus --dangerously-skip-permissions -p 2>&1 | tee -a "$LOGFILE"
     else
         echo "=== Loop #${count} | $(date) ===" | tee -a "$LOGFILE"
-        cat prompt.md | claude --model sonnet --dangerously-skip-permissions -p 2>&1 | tee -a "$LOGFILE"
+        cat prompt.md | claude --model opus --dangerously-skip-permissions -p 2>&1 | tee -a "$LOGFILE"
     fi
     exit_code=${PIPESTATUS[1]}
 
