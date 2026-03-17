@@ -23,7 +23,7 @@ Only after this check, proceed to the housekeeping below.
 
    Keep only facts that affect future work (invariants, API constraints, known fragilities). Delete verbose task lists, test descriptions, and implementation narratives for done work. The guiding question for every line: *would a coding agent working on the next phase need this?* If not, cut it.
 
-2. **Shrink the spec.** Fully implemented spec sections that aren't referenced by remaining work get collapsed to a one-liner or removed. Preserve interface contracts and invariants. Delete motivation, alternatives-considered, and verbose descriptions of shipped behavior. The spec serves remaining work, not history.
+2. **Check spec alignment.** Read spec.md for context but do NOT edit it. If you notice the spec is outdated or needs changes, note this at the top of implementation_plan.md so the human operator can update it.
 
 3. **Stale TODOs.** Check off completed items. Delete TODOs that are no longer relevant. If a TODO was attempted and abandoned, note why in one line, then remove it.
 
@@ -50,11 +50,12 @@ If you find violations, add a note to the top of implementation_plan.md so the c
 If you run out of ideas, think harder — read papers referenced in the code, re-read the in-scope files for new angles, try combining previous near-misses, try more radical architectural changes.
 
 ## Rules
-- Do NOT change code files — only implementation_plan.md, spec/design docs, and SCORES.md
+- Do NOT change code files — only implementation_plan.md and SCORES.md
+- Do NOT edit spec.md — it is maintained exclusively by the human operator
 - Do NOT delete information about what was built — compress it, don't lose it
 - Do NOT add speculative future work — only document what's decided
 - Target: plan under 150 lines. Spec: as short as possible while remaining correct for remaining work.
-- Combined plan + spec: under 50k tokens. Leave room for the coding agent to think.
+- Combined plan + spec (read-only): under 50k tokens. Leave room for the coding agent to think.
 
 ## After editing, report:
 - What you changed and why (brief summary)

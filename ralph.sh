@@ -37,6 +37,11 @@ while true; do
         continue
     fi
 
+    if [ "$count" -ge 6 ]; then
+        echo "Reached $count loops, stopping." | tee -a "$LOGFILE"
+        exit 0
+    fi
+
     if [ "$exit_code" -ne 0 ]; then
         failures=$((failures + 1))
         echo "WARNING: failure $failures/$MAX_CONSECUTIVE_FAILURES" | tee -a "$LOGFILE"
