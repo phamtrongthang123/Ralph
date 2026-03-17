@@ -46,6 +46,9 @@ Review recent code changes for violations. Flag any of:
 - **Delete dead code.** Don't comment it out, don't rename it with an underscore, don't keep it "for reference." Git has history.
 If you find violations, add a note to the top of implementation_plan.md so the coding agent fixes them in the next iteration.
 
+## Debugging principle
+If the coding agent has been guessing at bugs (changing code without evidence), flag it. The rule: **never guess — print liberally.** Print inputs, outputs, intermediate values, shapes, types. Add a note to implementation_plan.md reminding the coding agent to add print statements first when debugging, and remove them after the fix.
+
 ## When the plan feels stuck
 If you run out of ideas, think harder — read papers referenced in the code, re-read the in-scope files for new angles, try combining previous near-misses, try more radical architectural changes.
 
