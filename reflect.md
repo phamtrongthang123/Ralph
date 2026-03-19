@@ -17,23 +17,29 @@ Only after this check, proceed to the housekeeping below.
 
 ## Review checklist
 
-1. **Context rot.** Completed phases accumulate detailed checklists, lessons, and decisions that coding agents no longer need. Collapse finished sections into a compact summary table:
+1. **Test coverage (MOST IMPORTANT).** Test-driven development is the coding agent's strongest skill — use it. Check whether every function has a behavioral test that verifies it **does what it's supposed to do** given known inputs and expected outputs — not just sanity checks like shape or type. Edge cases matter. If functions lack behavioral tests, add explicit test-writing tasks to implementation_plan.md **before** the next feature task. A function without a behavioral test is a function you don't know works.
+
+2. **Debugging discipline.** Review recent work for guess-based debugging (changing code without evidence). If found, flag it. The rule: **never guess — print liberally.** Add a note to implementation_plan.md reminding the coding agent to add print statements first when debugging, and remove them after the fix.
+
+3. **Code style.** Review recent code changes for violations of the style rules below. If found, add fix tasks to implementation_plan.md.
+
+4. **Context rot.** Collapse finished sections into a compact summary table:
 
    | Phase | What was built | Constraints / gotchas for future work |
 
-   Keep only facts that affect future work (invariants, API constraints, known fragilities). Delete verbose task lists, test descriptions, and implementation narratives for done work. The guiding question for every line: *would a coding agent working on the next phase need this?* If not, cut it.
+   Keep only facts that affect future work. The guiding question: *would a coding agent working on the next phase need this?* If not, cut it.
 
-2. **Check spec alignment.** Read spec.md for context but do NOT edit it. If you notice the spec is outdated or needs changes, note this at the top of implementation_plan.md so the human operator can update it.
+5. **Check spec alignment.** Read spec.md for context but do NOT edit it. If the spec is outdated, note this at the top of implementation_plan.md for the human operator.
 
-3. **Stale TODOs.** Check off completed items. Delete TODOs that are no longer relevant. If a TODO was attempted and abandoned, note why in one line, then remove it.
+6. **Stale TODOs.** Check off completed items. Delete irrelevant ones. If attempted and abandoned, note why in one line, then remove.
 
-4. **Actionability.** Is the next task obvious? A coding agent reading this plan should know exactly what to do next within the first 20 lines of the active section. If not, reorder or add a `## Next step` pointer at the top.
+7. **Actionability.** Is the next task obvious? A coding agent should know exactly what to do within the first 20 lines of the active section. If not, reorder or add a `## Next step` pointer at the top.
 
-5. **Redundancy.** Is the same information repeated in multiple sections? Consolidate. Is there content that duplicates CLAUDE.md or other project docs? Remove it from the plan.
+8. **Redundancy.** Same info repeated? Consolidate. Duplicates CLAUDE.md? Remove from plan.
 
-6. **Missing lessons.** Were there failures, retries, or surprises in recent work that should be captured? Add them concisely to the relevant phase summary — one line each, not paragraphs.
+9. **Missing lessons.** Failures, retries, or surprises in recent work? Add them concisely — one line each.
 
-7. **Progress visibility.** Are there scores, metrics, or status indicators that a human can check without reading logs? If not, add instructions for the coding agent to maintain a human-readable scoreboard file (e.g., SCORES.md) with append-only rows — never delete history.
+10. **Progress visibility.** Are there scores/metrics a human can check without reading logs? If not, add instructions to maintain a scoreboard file (e.g., SCORES.md) with append-only rows.
 
 ## Code style enforcement
 Review recent code changes for violations. Flag any of:
@@ -45,12 +51,6 @@ Review recent code changes for violations. Flag any of:
 - **No wrappers, adapters, or factories.** If you need to call a function differently for two cases, use an `if` statement.
 - **Delete dead code.** Don't comment it out, don't rename it with an underscore, don't keep it "for reference." Git has history.
 If you find violations, add a note to the top of implementation_plan.md so the coding agent fixes them in the next iteration.
-
-## Testing principle
-Check whether every function has a behavioral test — not just a sanity check (e.g. "output shape is correct") but a test that verifies the function **does what it's supposed to do** given known inputs and expected outputs. If functions lack behavioral tests, add explicit test tasks to implementation_plan.md for the coding agent to write them. Edge cases matter. A function without a behavioral test is a function you don't know works.
-
-## Debugging principle
-If the coding agent has been guessing at bugs (changing code without evidence), flag it. The rule: **never guess — print liberally.** Print inputs, outputs, intermediate values, shapes, types. Add a note to implementation_plan.md reminding the coding agent to add print statements first when debugging, and remove them after the fix.
 
 ## When the plan feels stuck
 If you run out of ideas, think harder — read papers referenced in the code, re-read the in-scope files for new angles, try combining previous near-misses, try more radical architectural changes.
