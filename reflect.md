@@ -39,12 +39,15 @@ Only after this check, proceed to the housekeeping below.
 Review recent code changes for violations. Flag any of:
 - **Simplicity criterion**: All else being equal, simpler is better. A small improvement that adds ugly complexity is not worth it.
 - **No class hierarchies.** No abstract base classes, no inheritance chains. Use plain functions. If you need shared state, use a dataclass or a dict — not a class with 5 levels of `super().__init__()`.
-- **No new abstractions unless they eliminate duplication across 3+ call sites.** Three similar lines of code is better than a premature `BaseGazeInjector` → `ViTGazeInjector` → `LLMGazeInjector` hierarchy.
-- **Extend the existing code pattern.** The current hooks.py uses functions + a single `GazeLensContext` dataclass. Follow that pattern — add functions, not classes.
+- **No new abstractions unless they eliminate duplication across 3+ call sites.** Three similar lines of code is better than a premature `BaseProcessor` → `TypeAProcessor` → `TypeBProcessor` hierarchy.
+- **Extend the existing code pattern.** Before adding new patterns, look at what the codebase already does. Follow that — add functions, not classes, unless the project already uses classes.
 - **Flat is better than nested.** One file with clear sections beats three files with cross-imports.
-- **No wrappers, adapters, or factories.** If you need to call a function differently for ViT vs LLM, use an `if` statement.
+- **No wrappers, adapters, or factories.** If you need to call a function differently for two cases, use an `if` statement.
 - **Delete dead code.** Don't comment it out, don't rename it with an underscore, don't keep it "for reference." Git has history.
 If you find violations, add a note to the top of implementation_plan.md so the coding agent fixes them in the next iteration.
+
+## Testing principle
+Check whether every function has a behavioral test — not just a sanity check (e.g. "output shape is correct") but a test that verifies the function **does what it's supposed to do** given known inputs and expected outputs. If functions lack behavioral tests, add explicit test tasks to implementation_plan.md for the coding agent to write them. Edge cases matter. A function without a behavioral test is a function you don't know works.
 
 ## Debugging principle
 If the coding agent has been guessing at bugs (changing code without evidence), flag it. The rule: **never guess — print liberally.** Print inputs, outputs, intermediate values, shapes, types. Add a note to implementation_plan.md reminding the coding agent to add print statements first when debugging, and remove them after the fix.
