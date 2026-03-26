@@ -105,5 +105,9 @@ A: Ralph retries on rate limits automatically and stops after a set number of lo
 
 A: Yes — run `claude --resume`, which shows the history of all Claude sessions including the currently running `claude -p`. Pick the newest one with Ctrl-V and that is the current process.
 
+## For agents
+
+To use Ralph in your project, copy everything from this repository **except** `README.md` and `.git/` into your project's root directory. Then fill in `spec.md` with your goal and run `bash ralph.sh`.
+
 ## License
 MIT
