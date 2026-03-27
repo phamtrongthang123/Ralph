@@ -105,7 +105,7 @@ A: Ralph retries on rate limits automatically and stops after a set number of lo
 
 A: Yes — run `claude --resume`, which shows the history of all Claude sessions including the currently running `claude -p`. Pick the newest one with Ctrl-V and that is the current process.
 
-Q: How am I actually using Ralph in daily tasks?
+Q: How am I (the author) actually using Ralph in daily tasks?
 A: I usually use Ralph inside an interactive Claude session (the Manager). Ralph is just another coder. So I basically work with the Manager to flesh out the spec and implementation plan, then I ask it to spawn Ralph as a background job. Then I ask the Manager to monitor Ralph with a cron job, checking from time to time to ensure it doesn't go off the rails.
 
 ## For agents
