@@ -17,10 +17,10 @@ while true; do
     # Every REFLECT_EVERY loops, run reflect instead of prompt
     if [ $((count % REFLECT_EVERY)) -eq 0 ]; then
         echo "=== Loop #${count} [REFLECT] | $(date) ===" | tee -a "$LOGFILE"
-        cat reflect.md | claude --model opus --effort max --dangerously-skip-permissions -p 2>&1 | tee -a "$LOGFILE"
+        cat reflect.md | claude --model opus --effort max --dangerously-skip-permissions --output-format stream-json --verbose --include-partial-messages -p 2>&1 | tee -a "$LOGFILE"
     else
         echo "=== Loop #${count} | $(date) ===" | tee -a "$LOGFILE"
-        cat prompt.md | claude --model opus --effort max --dangerously-skip-permissions -p 2>&1 | tee -a "$LOGFILE"
+        cat prompt.md | claude --model opus --effort max --dangerously-skip-permissions --output-format stream-json --verbose --include-partial-messages -p 2>&1 | tee -a "$LOGFILE"
     fi
     exit_code=${PIPESTATUS[1]}
 
